@@ -1,0 +1,25 @@
+data bats;
+input size;
+datalines;
+1.7
+1.6
+1.5
+2.0
+2.3
+1.6
+1.6
+1.8
+1.5
+1.7
+1.2
+1.4
+1.6
+1.6
+1.6
+;
+
+proc print data=bats;
+run;
+
+proc ttest data=bats sides=2 Ho=1.8;
+run;
