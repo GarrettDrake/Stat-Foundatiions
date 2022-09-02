@@ -1,1 +1,1 @@
-# Stat-Foundatiions
+# Stat-Foundations
