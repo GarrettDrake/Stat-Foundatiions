@@ -1,0 +1,30 @@
+/* tree logging data example */
+data logging;
+input Score Method $;
+datalines;
+45 l
+53.1 l
+40.8 l
+75.5 l
+46.7 l
+85.4 l
+85.6 l
+18.2 l
+43.2 l
+23.6 u
+13.3 u
+34.2 u
+18.1 u
+56.1 u
+-8.1 u
+-20.1 u
+run;
+
+proc print data= logging;
+run;
+
+proc npar1way data=logging Wilcoxon;  /* run wilcoxon signed rank test */
+class Method;
+var Score;
+exact;
+run;
