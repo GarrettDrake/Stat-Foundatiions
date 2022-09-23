@@ -28,3 +28,9 @@ class Method;
 var Score;
 exact;
 run;
+
+proc npar1way data=logging Wilcoxon;  /* run wilcoxon signed rank test */
+class Method;
+var Score;
+exact HL; /* get confidence intervals by using HL */
+run;
