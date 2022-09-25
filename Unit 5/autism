@@ -1,0 +1,34 @@
+data autism;
+input baseline treatment;
+datalines;
+85 75 
+70 50 
+40 50 
+65 40 
+80 20 
+75 65 
+55 40 
+20 25
+70 30
+run;
+
+proc print data= autism;
+run;
+
+proc ttest data=autism side=U;
+paired baseline*treatment;
+run;
+
+
+
+data autism;
+set autism;
+Diff = baseline - treatment;
+run;
+
+proc print data = autism;
+run;
+
+proc univariate data = autism;
+var Diff;
+run;
