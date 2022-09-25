@@ -1,3 +1,8 @@
+/* Generated Code (IMPORT) */
+/* Source File: education.csv */
+/* Source Path: /home/u61852652 */
+/* Code generated on: 9/24/22, 8:53 PM */
+
 %web_drop_table(WORK.IMPORT);
 
 
@@ -17,3 +22,17 @@ PROC CONTENTS DATA=refile; RUN;
 proc print data=education;
 run;
 
+proc ttest data=education;
+class Educ;
+var Income2005;
+run;
+
+proc npar1way data=education Wilcoxon;  /* run wilcoxon signed rank test */
+class Educ;
+var Income2005;
+run;
+
+proc npar1way data=education Wilcoxon alpha=.05;  /* run wilcoxon signed rank test */
+class Educ;
+var Income2005;
+run;
