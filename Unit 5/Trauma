@@ -1,0 +1,40 @@
+data trauma;
+input Score Method $;
+datalines;
+20.1 N
+22.9 N
+18.8 N
+20.9 N
+20.9 N
+22.7 N
+21.4 N
+20.0 N
+38.5 T
+25.8 T
+22.0 T
+23.0 T
+37.6 T
+30.0 T
+24.5 T
+run;
+
+proc print data= trauma;
+run;
+
+proc npar1way data=trauma Wilcoxon aplha = .05;  /* run wilcoxon signed rank test */
+class Method;
+var Score;
+run;
+
+
+proc ttest data=trauma;
+class method;
+var score;
+run;
+
+
+proc npar1way data=trauma Wilcoxon aplha = .1;  /* run wilcoxon signed rank test */
+class Method;
+var Score;
+exact HL; /* get confidence intervals by using HL */
+run;
