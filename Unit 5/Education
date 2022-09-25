@@ -1,0 +1,19 @@
+%web_drop_table(WORK.IMPORT);
+
+
+FILENAME REFFILE '/home/u61852652/education.csv';
+
+PROC IMPORT DATAFILE=REFFILE
+	DBMS=CSV
+	OUT=education;
+	GETNAMES=YES;
+RUN;
+
+PROC CONTENTS DATA=refile; RUN;
+
+
+%web_open_table(refile);
+
+proc print data=education;
+run;
+
