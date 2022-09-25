@@ -16,11 +16,12 @@ proc print data= autism;
 run;
 
 proc ttest data=autism side=U;
-paired baseline*treatment;
+paired baseline*treatment;      /* run paired t test */
 run;
 
 
 
+/* how to get wilcoxon rank sum test */
 data autism;
 set autism;
 Diff = baseline - treatment;
