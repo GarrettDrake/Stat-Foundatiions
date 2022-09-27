@@ -10,14 +10,24 @@ FILENAME REFFILE '/home/u61852652/height.csv';
 
 PROC IMPORT DATAFILE=REFFILE
 	DBMS=CSV
-	OUT=height;
+	OUT=heightSport;
 	GETNAMES=YES;
 RUN;
 
-PROC CONTENTS DATA=height; RUN;
+PROC CONTENTS DATA=heightSport; RUN;
 
 
 %web_open_table(WORK.IMPORT1);
 
-proc print data=height;
+proc print data=heightSport;
+run;
+
+proc glm data = heightSport;
+class Sport;
+model height = sport;
+run;
+
+proc glm data = heightSport;
+class combine;
+model height = combine;
 run;
