@@ -1,0 +1,23 @@
+/* Generated Code (IMPORT) */
+/* Source File: education2005.csv */
+/* Source Path: /home/u61852652 */
+/* Code generated on: 9/28/22, 1:17 PM */
+
+%web_drop_table(edu);
+
+
+FILENAME REFFILE '/home/u61852652/education2005.csv';
+
+PROC IMPORT DATAFILE=REFFILE
+	DBMS=CSV
+	OUT=edu;
+	GETNAMES=YES;
+RUN;
+
+PROC CONTENTS DATA=edu; RUN;
+
+
+%web_open_table(edu);
+
+proc print data= edu;
+run;
