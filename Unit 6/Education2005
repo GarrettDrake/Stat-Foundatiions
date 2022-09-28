@@ -21,3 +21,19 @@ PROC CONTENTS DATA=edu; RUN;
 
 proc print data= edu;
 run;
+
+/* Code to create log variable of income2005 in data set edu */
+data edu;
+set edu;
+logincome2005 = log (income2005);
+run;
+
+proc glm data=edu;
+class Educ;
+model logincome2005 = educ;
+run;
+
+proc glm data = heightSport;
+class Sport;
+model height = sport;
+run;
