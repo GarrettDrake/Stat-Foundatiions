@@ -1,0 +1,47 @@
+/* Generated Code (IMPORT) */
+/* Source File: handicap_DF.csv */
+/* Source Path: /home/u61852652 */
+/* Code generated on: 10/9/22, 6:36 PM */
+
+%web_drop_table(WORK.IMPORT);
+
+
+FILENAME REFFILE '/home/u61852652/handicap_DF.csv';
+
+PROC IMPORT DATAFILE=REFFILE
+	DBMS=CSV
+	OUT=handicap;
+	GETNAMES=YES;
+RUN;
+
+PROC CONTENTS DATA=handicap; RUN;
+
+
+%web_open_table(handicap);
+
+proc print data= handicap;
+run;
+
+proc glm data=handicap;
+class handicap;
+model score = handicap;
+means handicap/ hovtest=bf dunnett('None');
+run;
+
+
+proc glm data=handicap;
+class handicap;
+model score = handicap;
+means handicap/hovtest = bf tukey;
+run;
+proc glm data=handicap;
+class handicap;
+model score = handicap;
+means handicap/hovtest = bf lsd;
+run;
+
+proc glm data=handicap;
+class handicap;
+model score = handicap;
+means handicap/hovtest = bf scheffe;
+run;
