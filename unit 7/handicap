@@ -22,25 +22,25 @@ PROC CONTENTS DATA=handicap; RUN;
 proc print data= handicap;
 run;
 
-proc glm data=handicap;
+proc glm data=handicap order = data;
 class handicap;
 model score = handicap;
 means handicap/ hovtest=bf dunnett('None');
 run;
 
 
-proc glm data=handicap;
+proc glm data=handicap order = data;
 class handicap;
 model score = handicap;
 means handicap/hovtest = bf tukey;
 run;
-proc glm data=handicap;
+proc glm data=handicap order = data;
 class handicap;
 model score = handicap;
 means handicap/hovtest = bf lsd;
 run;
 
-proc glm data=handicap;
+proc glm data=handicap order = data;
 class handicap;
 model score = handicap;
 means handicap/hovtest = bf scheffe;
