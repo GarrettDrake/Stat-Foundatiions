@@ -1,0 +1,59 @@
+/* Generated Code (IMPORT) */
+/* Source File: Metabolic Data.csv */
+/* Source Path: /home/u61852652 */
+/* Code generated on: 11/6/22, 3:32 PM */
+
+%web_drop_table(WORK.IMPORT);
+
+
+FILENAME REFFILE '/home/u61852652/Metabolic Data.csv';
+
+PROC IMPORT DATAFILE=REFFILE
+	DBMS=CSV
+	OUT=metabolic;
+	GETNAMES=YES;
+RUN;
+
+PROC CONTENTS DATA=WORK.IMPORT; RUN;
+
+
+%web_open_table(WORK.IMPORT);
+
+proc print data=metabolic;
+run;
+
+*To created variable of the 3/4 exponent of mass;
+data metabolic;
+set metabolic;
+expmass= mass**.75;
+run;
+
+*Original model --- Check regression assumptions of transformed data and to get the parameter estimates;
+proc reg data = metabolic;
+model expmass = metab;
+run;
+
+
+*To created log variable of the metabolic rate;
+data metabolic;
+set metabolic;
+logmetab= log(metab);
+run;
+
+*To created log variable of the 3/4mass;
+data metabolic;
+set metabolic;
+logmass= log(expmass);
+run;
+
+
+*Check regression assumptions of transformed data and to get the parameter estimates;
+proc reg data = metabolic;
+model expmass = logmetab;
+run;
+
+*Check log-log regression assumptions of transformed data and to get the parameter estimates;
+proc reg data = metabolic;
+model logmass = logmetab / clb;
+run;
+
